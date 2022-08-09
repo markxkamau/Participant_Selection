@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+          referrerpolicy="no-referrer"/>
+</head>
+<body>
+<div>
+    <table class="table-fixed border-collapse w-4/5 mx-24 mt-14">
+        <thead class="">
+        <tr class="border-b-2 border-black">
+            <th class="w-4/12 bg-gray-300 text-left px-2">Name</th>
+            <th class="w-4/12 bg-gray-300 text-left px-2">Gender</th>
+            <th class="w-4/12 bg-gray-300 text-left px-2"></th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-400">
+        <tr class="bg-white " th:each="participant: ${participant_info}">
+            <td th:text="${participant.name}">
+            </td>
+            <td th:text="${participant.gender}">
+            </td>
+            <td>
+                <button type="submit" class=" rounded-md bg-black px-10 py-2 text-white ">Start</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/participant/new_participant}" type="submit" class="mt-5 rounded-md bg-black px-10 py-2 text-white  mx-24 mt-14">Add Participant</a>
+</div>
+
+</body>
+</html>
