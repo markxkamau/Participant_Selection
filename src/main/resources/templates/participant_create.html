@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Participant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+          referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+<div class="flex min-h-screen items-center justify-start bg-white">
+    <div class="mx-auto w-full max-w-lg">
+        <h1 class="text-4xl font-medium">Participant Details</h1>
+
+        <form action="#" th:action="@{/participant/new_participant}" th:object="${participant_info}" class="mt-10"
+              method="post">
+            <div class="grid gap-6 sm:grid-cols-2">
+                <div class="flex items-center relative z-0 col-span-2">
+                    <input type="text" name="name" th:field="*{name}"
+                           class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                           placeholder=" " required/>
+                    <label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your
+                        name</label>
+                </div>
+                <div class="mb-6 md:flex md:justify-between text-center overflow-hidden w-full">
+                    <div >
+                        Gender
+                    </div>
+                    <label class="flex radio p-2 cursor-pointer">
+                        <input class="my-auto transform scale-125" type="radio" name="gender" value="Male" required/>
+                        <div class="title px-2 text-gray-600">Male</div>
+                    </label>
+
+                    <label class="flex radio p-2 cursor-pointer">
+                        <input class="my-auto transform scale-125" type="radio" name="gender" value="Female" required>
+
+                        <div class="title px-2 text-gray-600">Female</div>
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="mt-5 rounded-md bg-black px-10 py-2 text-white">Add Participant</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
