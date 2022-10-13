@@ -4,10 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/participant")
@@ -27,13 +24,29 @@ public class ParticipantController {
         return "participant_home";
     }
 
-    public void addNewparticipant(Participant participant) {
+    /**
+     * @GetMapping("/select") public String selectRandomParticipant(@NotNull Model model, @ModelAttribute @NotNull Participant participant){
+     * model.addAttribute("participant_select",participantService.setParticipants(3,participant.getGender()));
+     * return "participant_list";
+     * }
+     * @GetMapping("/select/{id}")
+     * @ResponseBody public List<Participant> selectedRandoms(@PathVariable int id){
+     * return participantService.setParticipants(3,participantService.participants().get(id).getGender());
+     * }
+     */
+
+    public void addNewParticipant(Participant participant) {
         participantService.addNewParticipant(participant);
     }
 
     @PostMapping("/new_participant")
     public String inputNewParticipant(@NotNull Model model, @ModelAttribute Participant participant) {
-        addNewparticipant(participant);
+        if (participantService.newParticipantResponse(participant) != true) {
+            model.addAttribute("participant_info", new Participant());
+            model.addAttribute("participant_alert", "Participant already registered");
+            return "participant_create";
+        }
+        addNewParticipant(participant);
         model.addAttribute("participant_info", participantService.participants());
         return "participant_home";
     }
