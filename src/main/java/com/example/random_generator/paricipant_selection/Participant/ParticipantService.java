@@ -15,7 +15,8 @@ public class ParticipantService {
     public List<Participant> participants() {
         return participantRepository.findAll();
     }
-    public void addNewParticipant(Participant participant){
+
+    public void addNewParticipant(Participant participant) {
         participantRepository.save(participant);
     }
 
@@ -31,22 +32,22 @@ public class ParticipantService {
         }
     }
 
-    public List<Participant> getparticipantByGender(Gender gender){
+    public List<Participant> getParticipantByGender(Gender gender) {
         return participantRepository.findByGender(gender);
     }
-    public List<Participant> setParticipants(int count, Gender gender){
+
+    public List<Participant> setParticipants(int count, Gender gender) {
         List<Participant> participants = new ArrayList<>();
-        Random random = new Random(count);
+        Random random = new Random();
         int x = 0;
-        if (gender.equals(Gender.Male)){
-            while (x < count){
-                participants.add(getparticipantByGender(Gender.Female).get(random.nextInt()));
+        if (gender.equals(Gender.Male)) {
+            while (x < count) {
+                participants.add(getParticipantByGender(Gender.Female).get(random.nextInt(count + 1)));
                 x++;
             }
-        }
-        else if (gender.equals(Gender.Female)){
-            while (x < count){
-                participants.add(getparticipantByGender(Gender.Male).get(random.nextInt()));
+        } else if (gender.equals(Gender.Female)) {
+            while (x < count) {
+                participants.add(getParticipantByGender(Gender.Male).get(random.nextInt(count + 1)));
                 x++;
             }
         }
