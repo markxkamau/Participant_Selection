@@ -53,5 +53,16 @@ public class ParticipantService {
         }
         return participants;
     }
+    public boolean newParticipantResponse(Participant participant) {
+        int x = 0;
+        List<Participant> participantList = participantRepository.findAll();
+        while (x < participantList.size()) {
+            if (participant.getName().toLowerCase().equals(participantList.get(x).getName().toLowerCase())) {
+                return false;
+            }
+            x++;
+        }
+        return true;
+    }
 
 }
