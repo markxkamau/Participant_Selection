@@ -5,6 +5,9 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
           referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <div>
@@ -14,15 +17,20 @@
             <th class="w-4/12 bg-gray-300 text-left px-2">No.</th>
             <th class="w-4/12 bg-gray-300 text-left px-2">Name</th>
             <th class="w-4/12 bg-gray-300 text-left px-2">Gender</th>
+            <th class="w-4/12 bg-gray-300 text-left px-2"></th>
         </tr>
         </thead>
         <tbody class="divide-y divide-gray-400">
         <tr class="bg-white " th:each="participant: ${participant_info}">
-            <td th:text="${participant.id}">1
+            <td th:text="${participant.id}" class="w-4/12 text-left px-2">1
             </td>
-            <td th:text="${participant.name}">Mark
+            <td th:text="${participant.name}" class="w-4/12 text-left px-2">Mark
             </td>
-            <td th:text="${participant.gender}">Male
+            <td th:text="${participant.gender}" class="w-4/12 text-left px-2">Male
+            </td>
+            <td>
+                <a th:href="@{'/participant/delete/'+${participant.id}}" class="w-4/12 text-left px-2"
+                ><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         </tbody>
