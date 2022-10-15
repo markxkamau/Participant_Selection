@@ -19,7 +19,14 @@ public class ParticipantController {
     }
 
     @GetMapping("/all_participant")
-    public String showParticipantDetail(@NotNull Model model, @ModelAttribute Participant participant) {
+    public String showParticipantDetail(@NotNull Model model) {
+        model.addAttribute("participant_info", participantService.participants());
+        return "participant_home";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSelectedParticipant(@NotNull Model model, @PathVariable Long id) {
+        participantService.deleteParticipantById(id);
         model.addAttribute("participant_info", participantService.participants());
         return "participant_home";
     }

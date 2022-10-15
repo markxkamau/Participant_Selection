@@ -66,4 +66,8 @@ public class ParticipantService {
         return true;
     }
 
+    public void deleteParticipantById(Long id){
+        participantRepository.deleteById(id);
+    }
+
 }
