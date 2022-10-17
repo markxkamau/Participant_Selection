@@ -32,7 +32,7 @@ public class ParticipantController {
     }
 
     @GetMapping("/game2/{id}")
-    public String gameOne(@PathVariable Long id, @NotNull Model model) {
+    public String gameTwo(@PathVariable Long id, @NotNull Model model) {
         model.addAttribute("participant_info", participantService.participants().get(id.intValue()));
         model.addAttribute("random_select", participantService.setParticipants(3, participantService.getParticipantById(
                 participantService.participants().get(id.intValue()).getId()).get().getGender()));
