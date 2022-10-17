@@ -1,12 +1,9 @@
 package com.example.random_generator.paricipant_selection.Participant;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ParticipantService {
@@ -37,7 +34,7 @@ public class ParticipantService {
         return participantRepository.findByGender(gender);
     }
 
-    public List<Participant> setParticipants(int count, Gender gender) {
+    public List<Participant> setParticipants(int count, @NotNull Gender gender) {
         List<Participant> participants = new ArrayList<>();
         Random random = new Random();
         int range = count+1;
@@ -60,7 +57,7 @@ public class ParticipantService {
         int x = 0;
         List<Participant> participantList = participantRepository.findAll();
         while (x < participantList.size()) {
-            if (participant.getName().toLowerCase().equals(participantList.get(x).getName().toLowerCase()) && participant.getGender().equals(participantList.get(x).getGender())) {
+            if (participant.getName().equalsIgnoreCase(participantList.get(x).getName()) && participant.getGender().equals(participantList.get(x).getGender())) {
                 return false;
             }
             x++;
