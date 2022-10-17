@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiss, Kill Or Marry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+          referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<nav class="bg-white shadow">
+    <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+        <div class="flex justify-between items-center">
+            <p class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
+               th:text="'Player: '+ ${participant_info.name}+' Gender: '+${participant_info.gender} " >Contacts Confirmation</p>
+        </div>
+    </div>
+</nav>
+<div>
+    <table class="table-fixed border-collapse w-4/5 mx-24 mt-14">
+        <thead class="">
+        <tr class="border-b-2 border-black">
+            <th class="w-4/12 bg-gray-300 text-left px-2">No.</th>
+            <th class="w-4/12 bg-gray-300 text-left px-2">Name</th>
+            <th class="w-4/12 bg-gray-300 text-left px-2">Gender</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-400">
+        <tr class="bg-white " th:each="participant: ${random_select}">
+            <td th:text="${participant.id}" class="w-4/12 text-left px-2">1
+            </td>
+            <td th:text="${participant.name}" class="w-4/12 text-left px-2">Mark
+            </td>
+            <td th:text="${participant.gender}" class="w-4/12 text-left px-2">Male
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="w-4/5" style="margin:auto;">
+        <a th:href="@{'/participant/game2/'+${participant_info.id}}" type="submit"
+           class="mt-5 rounded-md bg-black px-10 py-2 text-white mt-14">Next</a>
+        <a th:href="@{/participant/all_participant}" type="submit" style="float:right;"
+           class="mt-5 rounded-md bg-black px-10 py-2 text-white mt-14">Home</a>
+    </div>
+</div>
+
+</body>
+</html>
