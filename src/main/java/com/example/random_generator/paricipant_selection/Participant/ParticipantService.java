@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -39,15 +40,16 @@ public class ParticipantService {
     public List<Participant> setParticipants(int count, Gender gender) {
         List<Participant> participants = new ArrayList<>();
         Random random = new Random();
+        int range = count+1;
         int x = 0;
         if (gender.equals(Gender.Male)) {
             while (x < count) {
-                participants.add(getParticipantByGender(Gender.Female).get(random.nextInt(count + 1)));
+                participants.add(getParticipantByGender(Gender.Female).get(random.nextInt(range)));
                 x++;
             }
         } else if (gender.equals(Gender.Female)) {
             while (x < count) {
-                participants.add(getParticipantByGender(Gender.Male).get(random.nextInt(count + 1)));
+                participants.add(getParticipantByGender(Gender.Male).get(random.nextInt(range)));
                 x++;
             }
         }
@@ -70,4 +72,7 @@ public class ParticipantService {
         participantRepository.deleteById(id);
     }
 
+    public Optional<Participant> getParticipantById(Long id) {
+        return participantRepository.findById(id);
+    }
 }

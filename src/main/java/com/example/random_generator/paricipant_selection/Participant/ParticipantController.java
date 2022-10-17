@@ -31,6 +31,14 @@ public class ParticipantController {
         return "participant_home";
     }
 
+    @GetMapping("/game2/{id}")
+    public String gameOne(@PathVariable Long id, @NotNull Model model) {
+        model.addAttribute("participant_info", participantService.participants().get(id.intValue()));
+        model.addAttribute("random_select", participantService.setParticipants(3, participantService.getParticipantById(
+                participantService.participants().get(id.intValue()).getId()).get().getGender()));
+        return "game_2.html";
+    }
+
     /**
      * @GetMapping("/select") public String selectRandomParticipant(@NotNull Model model, @ModelAttribute @NotNull Participant participant){
      * model.addAttribute("participant_select",participantService.setParticipants(3,participant.getGender()));
