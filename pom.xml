@@ -19,6 +19,7 @@
 			<url>file:.mvn/maven-repo</url>
 		</repository>
 	</distributionManagement>
+	<!--I have also installed all these dependencies, why the problem?-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
